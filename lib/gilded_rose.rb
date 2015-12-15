@@ -1,14 +1,6 @@
 def update_quality(items)
   items.each do |item|
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      # Does not get better
-      if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
-        end
-      end
-    else
-      # DO GET BETTER WITH AGE
+    if improves_with_age?(item)
       if item.quality < 50
         item.quality += 1
         if item.name == 'Backstage passes to a TAFKAL80ETC concert'
@@ -24,13 +16,16 @@ def update_quality(items)
           end
         end
       end
+    else
+      if item.quality > 0
+        if item.name != 'Sulfuras, Hand of Ragnaros'
+          item.quality -= 1
+        end
+      end
     end
 
     if item.name != 'Sulfuras, Hand of Ragnaros'
       item.sell_in -= 1
-    end
-
-    if item.name == 'Conjured Mana Cake'
     end
 
     if item.sell_in < 0
@@ -51,6 +46,10 @@ def update_quality(items)
       end
     end
   end
+end
+
+def improves_with_age?(item)
+  item.name == 'Aged Brie' || item.name == 'Backstage passes to a TAFKAL80ETC concert'
 end
 
 # DO NOT CHANGE THINGS BELOW -----------------------------------------
