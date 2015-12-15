@@ -30,6 +30,9 @@ def update_quality(items)
       item.sell_in -= 1
     end
 
+    if item.name == 'Conjured Mana Cake'
+    end
+
     if item.sell_in < 0
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
